@@ -15,12 +15,42 @@ class Node:
 		self.next = None
 
 class Solution:
+	def dfs_stack(self, head, k):
+		stack = []
+		while head:
+			stack.append(head.val)
+			head = head.next
+		while k > 1:
+			stack.pop()
+			k -= 1
+		return stack[-1]
+
+	def dfs(self, head, k):
+		if not head:
+			return 0
+		temp = self.dfs(head.next, k) + 1
+		if temp == k:
+			print(head.val)
+		return temp
+		
+
+	def twoPointers(self, head, k):
+		first = second = head
+		while k > 1:
+			first = first.next
+			k -= 1
+
+		while first.next:
+			first = first.next
+			second = second.next
+		return second.val
+
 	def returnKthToLast(self, head, k):
-		# Naive solution
+		# Naive solution count lenght first then go through the K steps
 		temp = head
 		l = self.count(temp)
 		run = l-k
-		while run > 1:
+		while run > 0:
 			head = head.next
 			run -= 1
 		return head.val
