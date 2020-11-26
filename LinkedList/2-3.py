@@ -2,6 +2,13 @@
 the first and last node, not necessarily the exact middle) of a singly linked list, given only access to
 that node.'''
 
+# Can use slow and fast pointers. The fast one can go two nodes in one time, and the slow one go one at a time.
+# When the fast go to the end, the position of the slow one will arrive at the middle position. 
+# We can delete it with 2 ways
+# 1. use another pointer to record the previous node of the slow one. Then use the pre node to point to the slow.next
+# 2. without using the pre node. We can modify the value of slow node with the value of fast node. 
+# Then point the slow.next to the fast.next. Then fast.next = None.
+
 class Node:
     def __init__(self, val):
         self.val = val
